@@ -1,0 +1,7 @@
+instance: vipe.streams.raw_mp4_stream.RawMP4StreamList
+
+base_path: ??
+frame_start: 0
+frame_end: -1      # Process all frames
+frame_skip: 4      # Skip every 4th frame to reduce processing load (60fps -> 15fps)
+cached: false

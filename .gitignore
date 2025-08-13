@@ -167,3 +167,6 @@ vipe_results/
 /try_*.py
 /external/
 JIAHUI.md
+data
+vipe-venv
+.claude

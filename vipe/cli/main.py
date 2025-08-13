@@ -41,7 +41,7 @@ def infer(video: Path, output: Path, pipeline: str, visualize: bool):
 
     logger = configure_logging()
 
-    overrides = [f"pipeline={pipeline}", f"pipeline.output.path={output}", "pipeline.output.save_artifacts=true"]
+    overrides = [f"pipeline={pipeline}", f"pipeline.output.path={output}"]
     if visualize:
         overrides.append("pipeline.output.save_viz=true")
         overrides.append("pipeline.slam.visualize=true")
@@ -55,7 +55,7 @@ def infer(video: Path, output: Path, pipeline: str, visualize: bool):
     vipe_pipeline = make_pipeline(args.pipeline)
 
     # Some input videos can be malformed, so we need to cache the videos to obtain correct number of frames.
-    video_stream = ProcessedVideoStream(RawMp4Stream(video), []).cache(desc="Reading video stream")
+    video_stream = ProcessedVideoStream(RawMp4Stream(video), []).cache(desc="Reading video stream", online=True)
 
     vipe_pipeline.run(video_stream)
     logger.info("Finished")
